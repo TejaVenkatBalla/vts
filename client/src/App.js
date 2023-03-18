@@ -1,12 +1,17 @@
 
 import './App.css';
-import VirusScan2 from './components/scan2';
+import VirusScan3 from './components/scan3';
+import Navbar from './components/navbar';
+import Footer from './components/footer';
 
 function App() {
   return (
     <div className="App">
-      hello
-      <VirusScan2/>
+      <Navbar />
+      <div className='content'>
+      <VirusScan3/>
+      </div>
+      <Footer/>
       
     </div>
   );

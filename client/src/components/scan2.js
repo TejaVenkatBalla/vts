@@ -42,17 +42,23 @@ const VirusScan2 = () => {
   }, [scanResult, url, intervalId]);
 
   return (
-    <div>
+    <div className="form" >
       <form onSubmit={handleSubmit}>
-        <label>
-          URL to scan:
+      <div>
+        <div className="py-2">
+          <label>URL to scan:</label>
+        </div>
+        {/* need to insert  vt logo */}
+        <div className="py-2">
           <input
             type='text'
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
-        </label>
-        <button type='submit'>Scan</button>
+        </div>
+      </div>
+
+        <button type='submit' className="btn btn-primary " >Scan</button>
       </form>
       {scanResult && (
         <div>
@@ -70,7 +76,7 @@ const VirusScan2 = () => {
                       <p>Result: {scanResult.data.attributes.results[key].result}</p>
                       <p>Method: {scanResult.data.attributes.results[key].method}</p>
                       <p>Engine Name: {scanResult.data.attributes.results[key].engine_name}</p>
-                    </div>
+                    </div>
                   ))}
                 </ul>
               )}
