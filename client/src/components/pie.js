@@ -31,7 +31,7 @@ const PieChart = ({ data }) => {
         ],
       },
     });
-  }, [data]);
+  }, []);
 
   return (
     <div>
