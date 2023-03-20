@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className='content'>
+      
+      <div className='content '>
       <VirusScan3/>
       </div>
       <Footer/>
-      
     </div>
   );
 }
