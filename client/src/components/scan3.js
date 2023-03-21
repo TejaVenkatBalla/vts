@@ -9,10 +9,12 @@ const VirusScan = () => {
 
   const [submissionTime, setSubmissionTime] = useState(null);
   const [status, setStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      setIsLoading(true);
       const response = await fetch(
         `/api/virustotal?url=${encodeURIComponent(url)}`
       );
@@ -23,6 +25,8 @@ const VirusScan = () => {
     } catch (error) {
       console.error(error);
       setScanResult({ error: "Server error" });
+    }finally {
+      setIsLoading(false); // set the state variable back to false when data is fetched
     }
   };
 
@@ -33,6 +37,7 @@ const VirusScan = () => {
     ) {
       const id = setInterval(async () => {
         try {
+          setIsLoading(true);
           const response = await fetch(
             `/api/virustotal?url=${encodeURIComponent(url)}`
           );
@@ -41,6 +46,8 @@ const VirusScan = () => {
         } catch (error) {
           console.error(error);
           setScanResult({ error: "Server error" });
+        } finally {
+          setIsLoading(false); // set the state variable back to false when data is fetched
         }
       }, 5000);
       setIntervalId(id);
@@ -80,6 +87,12 @@ const VirusScan = () => {
           Given URL: {url}
         </div>
       )}
+      {isLoading && <div>
+        Scaning...
+        <div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="logo"></img>
+        </div>
+        </div>}
       {submissionTime && (
         <div>
           Submission Time: {submissionTime.toLocaleString()}
